@@ -53,10 +53,9 @@ server <- function(input, output) {
   }, height = "auto"
   )
   
-  #  About the CW Data
-  output$aboutData <- renderText(
-    paste("<b>The Chick Weight data orginates from the R datasets package. 
-    The following is from the help page:</b><br><br>", helpCW)
+  #  R Help for the Chick Weight Data
+  output$RHelp <- renderText(
+    paste(br(), tags$pre("help(ChickWeight)"), p(" "), helpCW)
   )
   
 }

@@ -70,10 +70,10 @@ ui <- fluidPage(
            )
   ),
   
-  tabPanel("About",
+  tabPanel("R Help",
            mainPanel(
              column(12, offset = 3, 
-                    htmlOutput("aboutData")
+                    htmlOutput("RHelp")
                     )
              )
            )
