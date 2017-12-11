@@ -4,27 +4,34 @@ ui <- fluidPage(
   tabsetPanel(
     tabPanel("Raw Data",
              sidebarPanel(
-               selectInput("rChick",
-                           label = "Chick ID",
-                           choices = c("All", unique(CW$Chick))
-                           ),
+               selectizeInput("rChick",
+                              label = "Chick IDs",
+                              choices = unique(CW$Chick),
+                              selected = unique(CW$Chick),
+                              multiple = TRUE,
+                              options = list(placeholder = "Select Chick IDs")
+                              ),
+               
+               selectizeInput("rDiet",
+                              label = "Diets", 
+                              choices = unique(CW$Diet),
+                              selected = unique(CW$Diet),
+                              multiple = TRUE,
+                              options = list(placeholder = "Select Diets")
+                              ),
+               
+               selectizeInput("rTime",
+                              label = "Time (days)",
+                              choices = unique(CW$Time),
+                              selected = unique(CW$Time),
+                              multiple = TRUE,
+                              options = list(placeholder = "Select Time")                                  
+                                  ),
                
                sliderInput("rangeWgt", "Weight Range:",
                            min = rWgt[1], max = rWgt[2],
                            value = c(rWgt[1], rWgt[2])
-                           ),
-               
-               checkboxGroupInput("rDiet",
-                                  label = "Diet", 
-                                  choices = unique(CW$Diet),
-                                  selected = unique(CW$Diet)
-                                  ),
-               
-               checkboxGroupInput("rTime",
-                                  label = "Time (days)",
-                                  choices = unique(CW$Time),
-                                  selected = unique(CW$Time)
-                                  )
+                           )
                ),
              
   mainPanel(
@@ -33,17 +40,21 @@ ui <- fluidPage(
   
   tabPanel("Summary Stats",
            sidebarPanel(
-             checkboxGroupInput("sDiet",
-                                label = "Diet",
-                                choices = unique(CW_sum_stats$Diet),
-                                selected = unique(CW_sum_stats$Diet)
-                                ),
+             selectizeInput("sDiet",
+                            label = "Diets", 
+                            choices = unique(CW_sum_stats$Diet),
+                            selected = unique(CW_sum_stats$Diet),
+                            multiple = TRUE,
+                            options = list(placeholder = "Select Diets")
+                            ),
              
-             checkboxGroupInput("sTime",
-                                label = "Time (days)",
-                                choices = unique(CW_sum_stats$Time),
-                                selected = unique(CW_sum_stats$Time)
-                                )
+             selectizeInput("sTime",
+                            label = "Time (days)",
+                            choices = unique(CW_sum_stats$Time),
+                            selected = unique(CW_sum_stats$Time),
+                            multiple = TRUE,
+                            options = list(placeholder = "Select Time")                                  
+                            )
              ),
            
            mainPanel(
