@@ -28,7 +28,7 @@ server <- function(input, output) {
  
   
   output$plot <- renderPlot({
-    CWplot <- ggplot(CW, aes(as.factor(Time), Weight, colour = Diet)) +
+    CWplot <- ggplot(CW, aes(Time, Weight, colour = Diet)) +
       xlab("Time (days)") + 
       ylab("Weight (grams)") +
       theme(legend.position = "none")
