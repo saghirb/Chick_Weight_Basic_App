@@ -29,6 +29,8 @@ server <- function(input, output) {
   
   output$plot <- renderPlot({
     CWplot <- ggplot(CW, aes(Time, Weight, colour = Diet)) +
+      scale_x_continuous(breaks=unique(CW$Time)) +
+      scale_y_continuous(breaks=seq(50, 350, by = 50)) +
       xlab("Time (days)") + 
       ylab("Weight (grams)") +
       theme(legend.position = "none")
@@ -50,7 +52,7 @@ server <- function(input, output) {
     CWplot <- CWplot + stat_summary(fun.y="mean", geom="line", aes(group=Diet), size=1)
     }
     print(CWplot)
-  }, height = "auto"
+  }, height = 600
   )
   
   #  R Help for the Chick Weight Data
