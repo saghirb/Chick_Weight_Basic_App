@@ -13,7 +13,9 @@ server <- function(input, output) {
       filter(Time %in% input$rTime) %>% 
       arrange(Chick, Diet, Time)
   }, 
-  style = "default", rownames = FALSE, options = list(pageLength = 15))
+  style = "default", 
+  rownames = FALSE, 
+  options = list(pageLength = 15))
   )
   
   # Filter data based on selections
@@ -23,9 +25,10 @@ server <- function(input, output) {
       filter(Time %in% input$sTime) %>% 
       arrange(Diet, Time)
   }, 
-  style = "default", rownames = FALSE, options = list(pageLength = 15)) 
-   %>% DT::formatRound(c('Mean', 'SD', 'Median'), digits = c(1, 2, 1)))
- 
+  style = "default", 
+  rownames = FALSE, 
+  options = list(pageLength = 15)) %>% 
+    DT::formatRound(c('Mean', 'SD', 'Median'), digits = c(1, 2, 1)))
   
   output$plot <- renderPlot({
     CWplot <- ggplot(CW, aes(Time, Weight, colour = Diet)) +
