@@ -52,7 +52,7 @@ server <- function(input, output) {
       CWplot <- CWplot + geom_jitter(size = .4) 
     }
     if ("Mean Lines" %in% input$plotShow ) { 
-    CWplot <- CWplot + stat_summary(fun.y="mean", geom="line", aes(group=Diet), size=1)
+    CWplot <- CWplot + stat_summary(fun="mean", geom="line", aes(group=Diet), size=1)
     }
     print(CWplot)
   }, height = 600
